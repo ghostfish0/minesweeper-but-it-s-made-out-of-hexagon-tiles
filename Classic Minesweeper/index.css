@@ -1,0 +1,22 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: auto ;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+  background-color: rgb(6, 6, 6);
+
+}
+
+h1 {
+  font-family: utm-cooper-black;
+  font-size: 30px;
+}
+
