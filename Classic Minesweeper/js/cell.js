@@ -4,7 +4,7 @@ class Cell {
 		this.y = y;
 		this.revealed = 0;
 		this.flagged = 0; 
-		this.bombed = (random(1) < bombRate); 
+		this.bombed = 0; 
 		this.num = 0;
 	}
 	fillNum() {
@@ -15,6 +15,12 @@ class Cell {
 				if (myGameboard.board[X][Y].bombed)
 					this.num++;
 		}
+	}
+
+	reveal() {
+		if (!this.revealed)
+			myGameboard.revealedCount++;
+		this.revealed = 1;
 	}
 
 	show() {
@@ -32,7 +38,10 @@ class Cell {
 			if (this.bombed) {
 				fill(255, 0, 255);
 				if (gameover)
-					fill(255, 0, 0);
+					if (!Won)
+						fill(255, 0, 0);
+					else
+						fill(0, 255, 0);
 			}
 			else {
 				fill(0, 0, 255);
@@ -57,37 +66,43 @@ class Cell {
 	clicked(myMousebutton) {
 		if (myMousebutton == LEFT) {
 			if (!this.flagged) { 
-				dfs(this.x, this.y, (this.num > 0));
+				this.reveal();
 				if (this.bombed) {
-					this.revealed = 1;
-					gameOver();
+					gameOver(0);
 				}
 				else {
-					let countFlags = 0;
-					for(let k = 0; k < 8; k++) {
-						const X = this.x + dfsMoveX[k];
-						const Y = this.y + dfsMoveY[k];
-						if (X >= 0 && Y >= 0 && X < rows && Y < rows) {
-							if (myGameboard.board[X][Y].flagged)
-								countFlags++;
-						}
-
+					if (this.num == 0) {
+						dfs(this.x, this.y);
 					}
-					if (countFlags == this.num) {
+					else {
+						let countFlags = 0;
 						for(let k = 0; k < 8; k++) {
 							const X = this.x + dfsMoveX[k];
 							const Y = this.y + dfsMoveY[k];
 							if (X >= 0 && Y >= 0 && X < rows && Y < rows) {
-								if (!myGameboard.board[X][Y].flagged) {
-									if (myGameboard.board[X][Y].bombed) {
-										gameOver();
-										break;
-									}
-									dfs(X, Y, (myGameboard.board[X][Y].num > 0));
-								}
+								if (myGameboard.board[X][Y].flagged)
+									countFlags++;
 							}
 
-						}						
+						}
+						if (countFlags == this.num) {
+							for(let k = 0; k < 8; k++) {
+								const X = this.x + dfsMoveX[k];
+								const Y = this.y + dfsMoveY[k];
+								if (X >= 0 && Y >= 0 && X < rows && Y < rows) {
+									if (!myGameboard.board[X][Y].flagged) {
+										if (myGameboard.board[X][Y].bombed) {
+											gameOver(0);
+											break;
+										}
+										myGameboard.board[X][Y].reveal();
+										if (myGameboard.board[X][Y].num == 0)
+											dfs(X, Y);
+									}
+								}
+
+							}						
+						}
 					}
 				}
 			}

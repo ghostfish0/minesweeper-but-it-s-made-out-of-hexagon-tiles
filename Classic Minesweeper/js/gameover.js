@@ -1,6 +1,8 @@
-gameover = 1;
-function gameOver() {
+function gameOver(won) {
+	gameover = 1;
+	Won = won;
 	for(let i = 0; i < rows; i++)
 		for(let j = 0; j < rows; j++)
-			myGameboard.board[i][j].revealed = 1;
+			if (myGameboard.board[i][j].bombed)
+				myGameboard.board[i][j].revealed = 1;
 }
