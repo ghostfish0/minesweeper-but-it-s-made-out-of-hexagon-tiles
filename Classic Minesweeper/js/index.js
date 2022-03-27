@@ -30,4 +30,8 @@ function draw() {
 		for(let j = 0; j < rows; j++)
 			myGameboard.board[j][i].show();
 
+	if (myGameboard.revealedCount == rows * rows - bombCount) {
+		gameOver(1);
+	}
+
 }

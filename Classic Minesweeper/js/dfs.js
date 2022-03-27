@@ -1,11 +1,4 @@
 function dfs(x, y) {
-	console.log(x, y);
-	if (myGameboard.revealedCount == rows * rows - bombCount) {
-		gameOver(1);
-		return 0;
-	}
-
-
 	for(let k = 0; k < 8; k++) {
 		const X = x + dfsMoveX[k];
 		const Y = y + dfsMoveY[k];
