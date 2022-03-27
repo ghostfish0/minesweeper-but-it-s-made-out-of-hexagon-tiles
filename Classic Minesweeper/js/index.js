@@ -5,7 +5,7 @@ document.oncontextmenu = function() {
 function setup() {
 	let canvas = createCanvas(canvasSize, canvasSize);
 	background(0);
-	stroke(0);
+	stroke(25);
 	strokeWeight(2);
 	textFont(myFont);
 	textStyle(BOLD);

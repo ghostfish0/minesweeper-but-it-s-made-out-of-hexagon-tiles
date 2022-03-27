@@ -30,7 +30,7 @@ class Cell {
 		if (!this.revealed) {
 			// fill(175, 129, 28);
 			if (this.flagged)
-				fill(255, 255, 0);
+				fill(255, 203, 61);
 			else 
 				fill(unrevealedBG);
 			rect(X, Y, width);
@@ -38,12 +38,11 @@ class Cell {
 		}
 		else if (this.revealed) {
 			if (this.bombed) {
-				fill(255, 0, 255);
 				if (gameover)
 					if (!Won)
-						fill(255, 0, 0);
+						fill(255, 51, 71);
 					else
-						fill(0, 255, 0);
+						fill(88, 184, 98);
 			}
 			else {
 				fill(revealedBG);
@@ -100,12 +99,13 @@ class Cell {
 	showHighlight() {
 		const X = margin + this.x * width;
 		const Y = margin + this.y * width;
+		const k = 30;
 		if (this.flagged || (this.bombed && this.revealed))
 			return 0;
 		if (!this.revealed)
-			fill(unrevealedBG + 30);
+			fill(unrevealedBG[0] +  k, unrevealedBG[1] + k, unrevealedBG[2] + k);
 		if (this.revealed)
-			fill(revealedBG + 30);
+			fill(revealedBG[0] +  k, revealedBG[1] + k, revealedBG[2] + k);
 		rect(X, Y, width);
 		this.showText();
 	}

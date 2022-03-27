@@ -2,7 +2,7 @@ let myGameboard;
 let gameover = 0;
 let Won = 0;
 
-let canvasSize = 550;
+let canvasSize = 450;
 let rows = 16;
 let margin = 20;
 let width = (canvasSize - 2 * margin) / rows;
@@ -16,9 +16,9 @@ let bombRate = bombCount / (rows * rows);
 let myFont;
 let myFontSize = 0.5 * width;
 
-let unrevealedBG = 100;
+let unrevealedBG = [82, 123, 199];
 let flaggedBG;
-let revealedBG = 50;
+let revealedBG = [50, 50, 50];
 let bombBG;
 let fillColor = [];
 
