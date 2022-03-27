@@ -21,7 +21,7 @@ function mouseReleased() {
 	if (!gameover) {
 		const x = Math.floor((mouseX - margin) / width);
 		const y = Math.floor((mouseY - margin) / width);
-		if (x > 0 && y > 0 && x < rows && y < rows)
+		if (x >= 0 && y >= 0 && x < rows && y < rows)
 			myGameboard.board[x][y].clicked(mouseButton);
 	}
 }
