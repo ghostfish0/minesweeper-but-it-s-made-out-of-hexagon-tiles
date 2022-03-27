@@ -26,15 +26,26 @@ class Cell {
 	show() {
 		const X = margin + this.x * width;
 		const Y = margin + this.y * width;
-		if (this.revealed == 0) {
+		if (!this.revealed) {
 			// fill(175, 129, 28);
 			if (this.flagged)
 				fill(255, 255, 0);
 			else 
-				fill(100, 100, 100);
+				fill(100);
 			rect(X, Y, width);
+
+			if (this.flagged) {
+				push();
+
+				fill(50);
+				noStroke();
+				text("F", X + width / 2 , Y + width / 2 - 1);
+
+				pop();
+
+			}
 		}
-		else if (this.revealed == 1) {
+		else if (this.revealed) {
 			if (this.bombed) {
 				fill(255, 0, 255);
 				if (gameover)
@@ -44,20 +55,29 @@ class Cell {
 						fill(0, 255, 0);
 			}
 			else {
-				fill(0, 0, 255);
+				fill(50);
 			}
 			rect(X, Y, width);
 
 			if (!this.bombed) {
 				push();
 
-				textAlign(CENTER, CENTER);
 				fill(255);
 				noStroke();
 				if (this.num > 0)
-					text(this.num, X + width / 2 , Y + width / 2 + 1);
+					text(this.num, X + width / 2 , Y + width / 2 - 1);
 
 				pop();
+			}
+			else {
+				push();
+
+				fill(255);
+				noStroke();
+				text("X", X + width / 2 , Y + width / 2 - 1);
+
+				pop();
+
 			}
 
 		}
