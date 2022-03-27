@@ -2,7 +2,7 @@ let myGameboard;
 let gameover = 0;
 let Won = 0;
 
-let canvasSize = 500;
+let canvasSize = 550;
 let rows = 16;
 let margin = 20;
 let width = (canvasSize - 2 * margin) / rows;
@@ -16,11 +16,12 @@ let bombRate = bombCount / (rows * rows);
 let myFont;
 let myFontSize = 0.5 * width;
 
-/*let unrevealedBG;
+let unrevealedBG = 100;
 let flaggedBG;
-let revealedBG;
+let revealedBG = 50;
 let bombBG;
-*/
+let fillColor = [];
+
 function preload() {
 	myFont = loadFont('./assets/SVN-Determination Sans.otf')
 }

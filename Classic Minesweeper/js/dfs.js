@@ -5,7 +5,8 @@ function dfs(x, y) {
 	
 		if (X >= 0 && Y >= 0 && X < rows && Y < rows) {
 			if (!myGameboard.board[X][Y].bombed && 
-				!myGameboard.board[X][Y].revealed) {
+				!myGameboard.board[X][Y].revealed && 
+				!myGameboard.board[X][Y].flagged) {
 
 					myGameboard.board[X][Y].reveal();
 					if (myGameboard.board[X][Y].num > 0)

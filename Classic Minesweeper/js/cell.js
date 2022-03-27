@@ -23,7 +23,8 @@ class Cell {
 		this.revealed = 1;
 	}
 
-	show() {
+
+	showFill() {
 		const X = margin + this.x * width;
 		const Y = margin + this.y * width;
 		if (!this.revealed) {
@@ -31,19 +32,9 @@ class Cell {
 			if (this.flagged)
 				fill(255, 255, 0);
 			else 
-				fill(100);
+				fill(unrevealedBG);
 			rect(X, Y, width);
 
-			if (this.flagged) {
-				push();
-
-				fill(50);
-				noStroke();
-				text("F", X + width / 2 , Y + width / 2 - 1);
-
-				pop();
-
-			}
 		}
 		else if (this.revealed) {
 			if (this.bombed) {
@@ -55,10 +46,16 @@ class Cell {
 						fill(0, 255, 0);
 			}
 			else {
-				fill(50);
+				fill(revealedBG);
 			}
 			rect(X, Y, width);
+		}
+	}
 
+	showText() {
+		const X = margin + this.x * width;
+		const Y = margin + this.y * width;
+		if (this.revealed) {
 			if (!this.bombed) {
 				push();
 
@@ -69,18 +66,48 @@ class Cell {
 
 				pop();
 			}
-			else {
-				push();
+		else {
+			push();
 
-				fill(255);
-				noStroke();
-				text("X", X + width / 2 , Y + width / 2 - 1);
+			fill(255);
+			noStroke();
+			text("X", X + width / 2 , Y + width / 2 - 1);
 
-				pop();
-
-			}
+			pop();
 
 		}
+		}
+		else {
+			if (this.flagged) {
+			push();
+
+			fill(50);
+			noStroke();
+			text("F", X + width / 2 , Y + width / 2 - 1);
+
+			pop();
+
+			}
+		}
+
+	}
+
+	show() {
+		this.showFill();
+		this.showText();
+	}
+
+	showHighlight() {
+		const X = margin + this.x * width;
+		const Y = margin + this.y * width;
+		if (this.flagged || (this.bombed && this.revealed))
+			return 0;
+		if (!this.revealed)
+			fill(unrevealedBG + 30);
+		if (this.revealed)
+			fill(revealedBG + 30);
+		rect(X, Y, width);
+		this.showText();
 	}
 
 	clicked(myMousebutton) {
