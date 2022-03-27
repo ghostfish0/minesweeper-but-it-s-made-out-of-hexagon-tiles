@@ -52,8 +52,8 @@ class Cell {
 	}
 
 	showText() {
-		const X = margin + this.x * width;
-		const Y = margin + this.y * width;
+		const X = margin + this.x * width + 1;
+		const Y = margin + this.y * width - 2;
 		if (this.revealed) {
 			if (!this.bombed) {
 				push();
@@ -61,7 +61,7 @@ class Cell {
 				fill(255);
 				noStroke();
 				if (this.num > 0)
-					text(this.num, X + width / 2 , Y + width / 2 - 1);
+					text(this.num, X + width / 2 , Y + width / 2);
 
 				pop();
 			}
@@ -70,7 +70,7 @@ class Cell {
 
 			fill(255);
 			noStroke();
-			text("X", X + width / 2 , Y + width / 2 - 1);
+			text("X", X + width / 2 , Y + width / 2);
 
 			pop();
 
