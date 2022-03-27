@@ -22,5 +22,5 @@ let revealedBG;
 let bombBG;
 */
 function preload() {
-	myFont = loadFont('../assets/SVN-Determination Sans.otf')
+	myFont = loadFont('./assets/SVN-Determination Sans.otf')
 }
