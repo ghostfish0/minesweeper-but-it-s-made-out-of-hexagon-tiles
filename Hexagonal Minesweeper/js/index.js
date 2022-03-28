@@ -4,9 +4,10 @@ document.oncontextmenu = function() {
 
 function setup() {
 	let canvas = createCanvas(canvasSize, canvasSize);
-	background(0);
+	// background(0);
 	stroke(25);
 	strokeWeight(2);
+	noStroke();
 	textFont(myFont);
 	textStyle(BOLD);
 	textAlign(CENTER, CENTER);
@@ -23,13 +24,11 @@ function mouseReleased() {
 		const atHover = locate(mouseX, mouseY);
 		const q = atHover[0];
 		const r = atHover[1];
-		console.log(q, r);
 		myGameboard.board[q][r].clicked(mouseButton);
 	}
 }
 
 function draw() {
-	background(0);
 	myGameboard.board.forEach(myQ => {
 			myQ.forEach(myCell => {
 				myCell.show();
@@ -42,7 +41,5 @@ function draw() {
 	if (myGameboard.revealedCount == (3 * boardRadius * (boardRadius + 1)  + 1) - bombCount) {
 		gameOver(1);
 	}
-
-	// hexagon(canvasSize / 2, canvasSize / 2, 50);
 
 }

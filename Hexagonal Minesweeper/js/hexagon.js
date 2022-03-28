@@ -7,13 +7,30 @@ function hexagon(x, y, r) {
 	}
 	endShape(CLOSE);
 }
-/*int pnpoly(int nvert, float *vertx, float *verty, float testx, float testy)
-{
-  int i, j, c = 0;
-  for (i = 0, j = nvert-1; i < nvert; j = i++) {
-    if ( ((verty[i]>testy) != (verty[j]>testy)) &&
-     (testx < (vertx[j]-vertx[i]) * (testy-verty[i]) / (verty[j]-verty[i]) + vertx[i]) )
-       c = !c;
-  }
-  return c;
-}*/
+
+function shadowandhighlight(x, y, r) {
+	let vertices = [];	
+	for(let i = 0; i < 6; i++) {
+		const X = x + r * cos(i * TAU / 6.0);
+		const Y = y + r * sin(i * TAU / 6.0);
+		vertices.push([X, Y]);
+	}
+	push();
+	noStroke();
+	fill(255);
+	beginShape();
+	vertex(vertices[4][0], vertices[4][1]);
+	vertex(vertices[5][0], vertices[5][1]);
+	vertex(vertices[2][0], vertices[2][1]);
+	vertex(vertices[3][0], vertices[3][1]);
+	endShape(CLOSE);
+
+	fill(128);
+	beginShape();
+	vertex(vertices[1][0], vertices[1][1]);
+	vertex(vertices[2][0], vertices[2][1]);
+	vertex(vertices[5][0], vertices[5][1]);
+	vertex(vertices[0][0], vertices[0][1]);
+	endShape(CLOSE);
+	pop();
+}

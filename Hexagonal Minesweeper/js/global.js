@@ -16,13 +16,14 @@ let bombCount = 55;
 let bombRate = bombCount / (3 * boardRadius * (boardRadius + 1)  + 1);
 
 let myFont;
-let myFontSize = 0.7 * cellRadius;
+let myFontSize = 1.3 * cellRadius;
 
-let unrevealedBG = [82, 123, 199];
+let unrevealedBG = [192, 192, 192];
 let flaggedBG;
-let revealedBG = [50, 50, 50];
+let revealedBG = [192, 192, 192];
 let bombBG;
 let fillColor = [];
+let numColors = [0, [0, 0, 255], [0, 129, 0], [255, 0, 0], [1, 1, 128], [128, 1, 1], [1, 128, 128]];
 
 function preload() {
 	myFont = loadFont('./assets/SVN-Determination Sans.otf')

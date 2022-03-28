@@ -32,61 +32,50 @@ class Cell {
 
 	showFill() {
 		if (!this.revealed) {
-			if (this.flagged)
-				fill(255, 203, 61);
-			else 
-				fill(unrevealedBG);
-			hexagon(this.centerX, this.centerY, cellRadius);
+			fill(unrevealedBG);
+			shadowandhighlight(this.centerX, this.centerY, cellRadius);
+			hexagon(this.centerX, this.centerY, 0.8 * cellRadius);
 
 		}
 		else if (this.revealed) {
 			if (this.bombed) {
 				if (gameover)
 					if (!Won)
-						fill(255, 51, 71);
+						fill(255, 0, 0);
 					else
 						fill(88, 184, 98);
 			}
 			else {
 				fill(revealedBG);
 			}
+			push();
+			stroke(128);
+			strokeWeight(0.15 * cellRadius);
 			hexagon(this.centerX, this.centerY, cellRadius);
+			pop();
 		}
 	}
 
 	showText() {
+		const X = this.centerX + 0.075 * cellRadius;
+		const Y = this.centerY - 0.2 * cellRadius;
 		if (this.revealed) {
 			if (!this.bombed) {
-				push();
-
-				fill(255);
-				noStroke();
-				if (this.num > 0)
-					text(this.num, this.centerX, this.centerY);
-
-				pop();
+				if (this.num > 0) {
+					push();
+					fill(numColors[this.num]);
+					noStroke();
+					text(this.num, X, Y);
+					pop();
+				}
 			}
-		else {
-			push();
-
-			fill(255);
-			noStroke();
-			text("X", this.centerX, this.centerY);
-
-			pop();
-
-		}
+			else {
+				drawBomb(this.centerX, this.centerY, 0.6 * cellRadius);
+			}
 		}
 		else {
 			if (this.flagged) {
-			push();
-
-			fill(50);
-			noStroke();
-			text("F", this.centerX, this.centerY);
-
-			pop();
-
+				drawFlag(this.centerX, this.centerY, 0.5 * cellRadius);
 			}
 		}
 
@@ -98,14 +87,22 @@ class Cell {
 	}
 
 	showHighlight() {
-		const k = 30;
+		const k = 35;
 		if (this.flagged || (this.bombed && this.revealed))
 			return 0;
-		if (!this.revealed)
+		if (!this.revealed) {
+			shadowandhighlight(this.centerX, this.centerY, cellRadius);
 			fill(unrevealedBG[0] +  k, unrevealedBG[1] + k, unrevealedBG[2] + k);
-		if (this.revealed)
+			hexagon(this.centerX, this.centerY, 0.8 * cellRadius);
+		}
+		if (this.revealed) {
+			push();
+			stroke(129);
+			strokeWeight(0.075 * cellRadius);
 			fill(revealedBG[0] +  k, revealedBG[1] + k, revealedBG[2] + k);
-		hexagon(this.centerX, this.centerY, cellRadius);
+			hexagon(this.centerX, this.centerY, 0.95 * cellRadius);
+			pop();
+		}
 		this.showText();
 	}
 
