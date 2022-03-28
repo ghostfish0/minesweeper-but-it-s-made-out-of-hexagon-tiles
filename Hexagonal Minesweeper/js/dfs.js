@@ -1,7 +1,7 @@
 function dfs(q, r) {
 	for(let k = 0; k < 6; k++) {
-		const Q = this.q + dfsMoveQ[k];
-		const R = this.r + dfsMoveR[k];
+		const Q = q + dfsMoveQ[k];
+		const R = r + dfsMoveR[k];
 		if (isValid(Q,R)) {
 			const QR2XY = qr2xy(Q, R);
 			const X = QR2XY[0];
@@ -9,7 +9,6 @@ function dfs(q, r) {
 			if (!myGameboard.board[X][Y].bombed && 
 				!myGameboard.board[X][Y].revealed && 
 				!myGameboard.board[X][Y].flagged) {
-
 					myGameboard.board[X][Y].reveal();
 					if (myGameboard.board[X][Y].num > 0)
 						continue;

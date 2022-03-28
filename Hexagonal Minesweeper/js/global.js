@@ -5,7 +5,7 @@ let gameover = 0;
 let Won = 0;
 
 let canvasSize = 500;
-let boardRadius = 3;
+let boardRadius = 4;
 let margin = 20;
 let cellRadius = (canvasSize - 2 * margin) / (sqrt3 * (2*boardRadius + 1));
 

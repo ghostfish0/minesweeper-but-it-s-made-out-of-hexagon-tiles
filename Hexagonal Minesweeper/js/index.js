@@ -29,7 +29,7 @@ function mouseReleased() {
 }
 
 function draw() {
-	background(255);
+	background(0);
 	myGameboard.board.forEach(myQ => {
 			myQ.forEach(myCell => {
 				myCell.show();
@@ -39,10 +39,10 @@ function draw() {
 	const atHover = locate(mouseX, mouseY);
 	myGameboard.board[atHover[0]][atHover[1]].showHighlight();
 
-/*	if (myGameboard.revealedCount == (3 * boardRadius * (boardRadius + 1)  + 1) - bombCount) {
+	if (myGameboard.revealedCount == (3 * boardRadius * (boardRadius + 1)  + 1) - bombCount) {
 		gameOver(1);
 	}
-*/
+
 	// hexagon(canvasSize / 2, canvasSize / 2, 50);
 
 }
