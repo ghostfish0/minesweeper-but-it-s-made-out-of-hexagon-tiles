@@ -13,31 +13,36 @@ function setup() {
 	textSize(myFontSize);
 
 
-	myGameboard = new Gameboard(rows, bombRate);
+	myGameboard = new Gameboard();
 	myGameboard.generate();
+	// noLoop();
 }
 
 function mouseReleased() { 
 	if (!gameover) {
-		const x = Math.floor((mouseX - margin) / width);
-		const y = Math.floor((mouseY - margin) / width);
-		if (x >= 0 && y >= 0 && x < rows && y < rows)
-			myGameboard.board[x][y].clicked(mouseButton);
+		const atHover = locate(mouseX, mouseY);
+		const q = atHover[0];
+		const r = atHover[1];
+		console.log(q, r);
+		myGameboard.board[q][r].clicked(mouseButton);
 	}
 }
 
 function draw() {
-	for(let i = 0; i < rows; i++)
-		for(let j = 0; j < rows; j++) {
-			myGameboard.board[j][i].show();
-		}
+	background(255);
+	myGameboard.board.forEach(myQ => {
+			myQ.forEach(myCell => {
+				myCell.show();
+			})
+				
+		});
+	const atHover = locate(mouseX, mouseY);
+	myGameboard.board[atHover[0]][atHover[1]].showHighlight();
 
-	const x = Math.floor((mouseX - margin) / width);
-	const y = Math.floor((mouseY - margin) / width);
-	if (x >= 0 && y >= 0 && x < rows && y < rows)
-		myGameboard.board[x][y].showHighlight();	
-	if (myGameboard.revealedCount == rows * rows - bombCount) {
+/*	if (myGameboard.revealedCount == (3 * boardRadius * (boardRadius + 1)  + 1) - bombCount) {
 		gameOver(1);
 	}
+*/
+	// hexagon(canvasSize / 2, canvasSize / 2, 50);
 
 }

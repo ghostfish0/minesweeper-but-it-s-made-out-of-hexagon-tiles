@@ -1,20 +1,22 @@
+let sqrt3 = Math.sqrt(3);
+
 let myGameboard;
 let gameover = 0;
 let Won = 0;
 
 let canvasSize = 500;
-let rows = 16;
+let boardRadius = 3;
 let margin = 20;
-let width = (canvasSize - 2 * margin) / rows;
+let cellRadius = (canvasSize - 2 * margin) / (sqrt3 * (2*boardRadius + 1));
 
-let dfsMoveY = [-1, -1, -1, 0, 1, 1, 1, 0];
-let dfsMoveX = [-1, 0, 1, 1, 1, 0, -1, -1];
+let dfsMoveQ = [-1, 0, 1, 1, 0, -1];
+let dfsMoveR = [0, -1, -1, 0, 1, 1];
 
 let bombCount = 10;
-let bombRate = bombCount / (rows * rows);
+let bombRate = bombCount / (3 * boardRadius * (boardRadius + 1)  + 1);
 
 let myFont;
-let myFontSize = 0.6 * width;
+let myFontSize = 0.7 * cellRadius;
 
 let unrevealedBG = [82, 123, 199];
 let flaggedBG;
