@@ -11,7 +11,7 @@ let cellRadius = (canvasSize - 2 * margin) / (sqrt3 * (2*boardRadius + 1));
 let dfsMoveQ = [-1, 0, 1, 1, 0, -1];
 let dfsMoveR = [0, -1, -1, 0, 1, 1];
 
-let bombCount = 55;
+let bombCount = 40;
 let bombRate = bombCount / (3 * boardRadius * (boardRadius + 1)  + 1);
 
 let myFont;
