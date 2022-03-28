@@ -1,18 +1,18 @@
-function hexagon(x, y, r) {
+function hexagon(x, y, r, pointy) {
 	beginShape();
 	for(let i = 0; i < 6; i++) {
-		const X = x + r * cos(i * TAU / 6.0);
-		const Y = y + r * sin(i * TAU / 6.0);
+		const X = x + r * cos((i + 1.5*pointy) * TAU / 6.0);
+		const Y = y + r * sin((i + 1.5*pointy) * TAU / 6.0);
 		vertex(X, Y);
 	}
 	endShape(CLOSE);
 }
 
-function shadowandhighlight(x, y, r) {
+function shadowandhighlight(x, y, r, pointy) {
 	let vertices = [];	
 	for(let i = 0; i < 6; i++) {
-		const X = x + r * cos(i * TAU / 6.0);
-		const Y = y + r * sin(i * TAU / 6.0);
+		const X = x + r * cos((i + 1.5*pointy) * TAU / 6.0);
+		const Y = y + r * sin((i + 1.5*pointy) * TAU / 6.0);
 		vertices.push([X, Y]);
 	}
 	push();

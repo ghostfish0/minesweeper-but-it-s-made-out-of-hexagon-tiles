@@ -17,7 +17,7 @@ class Cell {
 				const QR2XY = qr2xy(Q, R);
 				const X = QR2XY[0];
 				const Y = QR2XY[1];
-				if (myGameboard.board[X][Y].bombed)
+				if (myGame.board[X][Y].bombed)
 					this.num++;
 			}
 		}
@@ -25,7 +25,7 @@ class Cell {
 
 	reveal() {
 		if (!this.revealed)
-			myGameboard.revealedCount++;
+			myGame.revealedCount++;
 		this.revealed = 1;
 	}
 
@@ -33,13 +33,13 @@ class Cell {
 	showFill() {
 		if (!this.revealed) {
 			fill(unrevealedBG);
-			shadowandhighlight(this.centerX, this.centerY, cellRadius);
-			hexagon(this.centerX, this.centerY, 0.8 * cellRadius);
+			shadowandhighlight(this.centerX, this.centerY, cellRadius, 0);
+			hexagon(this.centerX, this.centerY, 0.8 * cellRadius, 0);
 
 		}
 		else if (this.revealed) {
 			if (this.bombed) {
-				if (gameover)
+				if (myGame.over)
 					if (!Won)
 						fill(255, 0, 0);
 					else
@@ -51,7 +51,7 @@ class Cell {
 			push();
 			stroke(128);
 			strokeWeight(0.15 * cellRadius);
-			hexagon(this.centerX, this.centerY, cellRadius);
+			hexagon(this.centerX, this.centerY, cellRadius, 0);
 			pop();
 		}
 	}
@@ -91,16 +91,16 @@ class Cell {
 		if (this.flagged || (this.bombed && this.revealed))
 			return 0;
 		if (!this.revealed) {
-			shadowandhighlight(this.centerX, this.centerY, cellRadius);
+			shadowandhighlight(this.centerX, this.centerY, cellRadius, 0);
 			fill(unrevealedBG[0] +  k, unrevealedBG[1] + k, unrevealedBG[2] + k);
-			hexagon(this.centerX, this.centerY, 0.8 * cellRadius);
+			hexagon(this.centerX, this.centerY, 0.8 * cellRadius, 0);
 		}
 		if (this.revealed) {
 			push();
 			stroke(129);
 			strokeWeight(0.075 * cellRadius);
 			fill(revealedBG[0] +  k, revealedBG[1] + k, revealedBG[2] + k);
-			hexagon(this.centerX, this.centerY, 0.95 * cellRadius);
+			hexagon(this.centerX, this.centerY, 0.95 * cellRadius, 0);
 			pop();
 		}
 		this.showText();
@@ -117,7 +117,7 @@ class Cell {
 					if (this.num == 0) {
 						dfs(this.q, this.r);
 					}
-					else {
+					else if (this.revealed) {
 						let countFlags = 0;
 						for(let k = 0; k < 6; k++) {
 							const Q = this.q + dfsMoveQ[k];
@@ -126,7 +126,7 @@ class Cell {
 								const QR2XY = qr2xy(Q, R);
 								const X = QR2XY[0];
 								const Y = QR2XY[1];
-								if (myGameboard.board[X][Y].flagged)
+								if (myGame.board[X][Y].flagged)
 									countFlags++;
 							}
 
@@ -139,13 +139,13 @@ class Cell {
 									const QR2XY = qr2xy(Q, R);
 									const X = QR2XY[0];
 									const Y = QR2XY[1];
-									if (!myGameboard.board[X][Y].flagged) {
-										if (myGameboard.board[X][Y].bombed) {
+									if (!myGame.board[X][Y].flagged) {
+										if (myGame.board[X][Y].bombed) {
 											gameOver(0);
 											break;
 										}
-										myGameboard.board[X][Y].reveal();
-										if (myGameboard.board[X][Y].num == 0)
+										myGame.board[X][Y].reveal();
+										if (myGame.board[X][Y].num == 0)
 											dfs(Q, R);
 									}
 								}

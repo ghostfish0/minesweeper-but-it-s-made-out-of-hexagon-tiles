@@ -1,11 +1,18 @@
-class Gameboard {
+class Game {
 	constructor() {
 		this.board = [];
+		this.over = 0;
 		this.revealedCount = 0;
+		this.flaggedCount = 0;
+		this.timePassed = 0;
 	}
 
 	generate() {
 		this.board = [];
+		this.over = 0;
+		this.revealedCount = 0;
+		this.flaggedCount = 0;
+		this.timePassed = 0;
 		for(let q = -boardRadius; q <= 0; q++) {
 			let currentQ = [];
 			for(let r = -boardRadius - q; r <= boardRadius; r++) {

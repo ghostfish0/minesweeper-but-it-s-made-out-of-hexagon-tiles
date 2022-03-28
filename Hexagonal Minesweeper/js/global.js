@@ -1,7 +1,6 @@
 let sqrt3 = Math.sqrt(3);
 
 let myGameboard;
-let gameover = 0;
 let Won = 0;
 
 let canvasSize = 1000;

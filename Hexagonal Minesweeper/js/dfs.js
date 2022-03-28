@@ -6,11 +6,11 @@ function dfs(q, r) {
 			const QR2XY = qr2xy(Q, R);
 			const X = QR2XY[0];
 			const Y = QR2XY[1];
-			if (!myGameboard.board[X][Y].bombed && 
-				!myGameboard.board[X][Y].revealed && 
-				!myGameboard.board[X][Y].flagged) {
-					myGameboard.board[X][Y].reveal();
-					if (myGameboard.board[X][Y].num > 0)
+			if (!myGame.board[X][Y].bombed && 
+				!myGame.board[X][Y].revealed && 
+				!myGame.board[X][Y].flagged) {
+					myGame.board[X][Y].reveal();
+					if (myGame.board[X][Y].num > 0)
 						continue;
 					dfs(Q, R);
 				}
