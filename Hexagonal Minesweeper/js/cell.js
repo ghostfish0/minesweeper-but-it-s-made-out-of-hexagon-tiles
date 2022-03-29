@@ -40,7 +40,7 @@ class Cell {
 		else if (this.revealed) {
 			if (this.bombed) {
 				if (myGame.over)
-					if (!Won)
+					if (!myGame.won)
 						fill(255, 0, 0);
 					else
 						fill(88, 184, 98);

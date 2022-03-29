@@ -1,7 +1,7 @@
 function gameOver(won) {
 	myGame.over = 1;
-	Won = won;
-	if (!Won)
+	myGame.won = won;
+	if (!won)
 		myGame.board.forEach(myQ => {
 			myQ.forEach(myCell => {
 				if (myCell.bombed)

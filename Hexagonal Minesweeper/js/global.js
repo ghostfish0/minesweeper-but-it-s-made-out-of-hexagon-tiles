@@ -2,7 +2,6 @@ let sqrt3 = Math.sqrt(3);
 
 let canvas;
 let myGameboard;
-let Won = 0;
 
 let canvasSize = 650;
 let boardRadius = 9;
@@ -16,7 +15,6 @@ let bombCount = 40;
 let bombRate = bombCount / (3 * boardRadius * (boardRadius + 1)  + 1);
 
 let myFont;
-let myFontSize = 1.3 * cellRadius;
 
 let unrevealedBG = [192, 192, 192];
 let flaggedBG;

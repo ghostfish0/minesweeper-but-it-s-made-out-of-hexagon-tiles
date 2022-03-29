@@ -4,20 +4,20 @@ document.oncontextmenu = function() {
 
 function setup() {
 	canvas = createCanvas(canvasSize, canvasSize);
+
+	myGame = new Game();
+	myGame.generate();
+	setInterval(timeIt, 10);
+
 	stroke(25);
 	strokeWeight(2);
 	noStroke();
 	textFont(myFont);
 	textStyle(BOLD);
 	textAlign(CENTER, CENTER);
-	textSize(myFontSize);
+	textSize(1.3 * cellRadius);
 
 	pixelDensity(20 / 13.0);
-
-
-	myGame = new Game();
-	myGame.generate();
-	setInterval(timeIt, 10);
 }
 
 function mouseReleased() { 

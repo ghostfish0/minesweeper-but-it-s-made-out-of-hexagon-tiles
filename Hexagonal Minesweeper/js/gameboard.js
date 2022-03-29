@@ -5,6 +5,7 @@ class Game {
 		this.revealedCount = 0;
 		this.flaggedCount = 0;
 		this.timePassed = 0;
+		this.won = 0;
 	}
 
 	generate() {
@@ -13,6 +14,7 @@ class Game {
 		this.revealedCount = 0;
 		this.flaggedCount = 0;
 		this.timePassed = 0;
+		this.won = 0;
 		for(let q = -boardRadius; q <= 0; q++) {
 			let currentQ = [];
 			for(let r = -boardRadius - q; r <= boardRadius; r++) {
