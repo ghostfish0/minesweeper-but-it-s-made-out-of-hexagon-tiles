@@ -1,9 +1,10 @@
 let sqrt3 = Math.sqrt(3);
 
+let canvas;
 let myGameboard;
 let Won = 0;
 
-let canvasSize = 1000;
+let canvasSize = 650;
 let boardRadius = 9;
 let margin = 20;
 let cellRadius = (canvasSize - 2 * margin) / (sqrt3 * (2*boardRadius + 1));
