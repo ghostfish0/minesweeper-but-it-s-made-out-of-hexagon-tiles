@@ -12,7 +12,7 @@ function setup() {
 	textAlign(CENTER, CENTER);
 	textSize(myFontSize);
 
-	pixelDensity(3.0);
+	pixelDensity(20 / 13.0);
 
 
 	myGame = new Game();
