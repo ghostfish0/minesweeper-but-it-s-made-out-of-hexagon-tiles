@@ -20,7 +20,7 @@ function setup() {
 	pixelDensity(20 / 13.0);
 }
 
-function mouseReleased() { 
+function mousePressed() { 
 	if (!myGame.over) {
 		const atHover = locate(mouseX, mouseY);
 		const x = atHover[0];
